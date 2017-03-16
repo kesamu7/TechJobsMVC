@@ -1,0 +1,17 @@
+﻿
+@{
+}
+
+@if(ViewBag.jobs.Count == 0)
+{
+    <p>No Jobs found with that search criteria.</p>
+
+}
+
+<ul>
+    @foreach (var @job in @ViewBag.jobs)
+    {
+        <li>@job.title</li>
+    }
+</ul>
+

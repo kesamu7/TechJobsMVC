@@ -2,6 +2,12 @@
 
 <h3>@ViewBag.jobs.Count Result(s)</h3>
 
-@{ 
-    // TODO #3 - Use the same list display from Views/Search/Index.cshtml 
-}
+<ul>
+    @foreach (var @job in @ViewBag.jobs)
+    // TODO #3 - Use the same list display from Views/Search/Index.cshtml
+    {
+
+        <li>@job</li>
+
+    }
+</ul>
