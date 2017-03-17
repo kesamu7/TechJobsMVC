@@ -2,16 +2,31 @@
 @{
 }
 
-@if(ViewBag.jobs.Count == 0)
-{
-    <p>No Jobs found with that search criteria.</p>
 
-}
 
-<ul>
-    @foreach (var @job in @ViewBag.jobs)
+    @if (ViewBag.jobs.Count == 0)
     {
-        <li>@job.title</li>
-    }
-</ul>
+        <p>No Jobs found with that search criteria.</p>
 
+    }
+
+    <p>
+
+        @foreach (var job in ViewBag.jobs)
+
+        {
+            <table>
+                @foreach (KeyValuePair<string, string> j in job)
+                {
+                    <tr>
+                        <td style="font-weight:bold;text-align:left;">@j.Key</td>
+                        <td style="text-align:left;">@j.Value</td>
+                    </tr>
+
+
+                }
+            </table>
+            <br />
+        }
+
+    </p>

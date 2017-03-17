@@ -1,6 +1,6 @@
 ﻿<h1>@ViewBag.title</h1>
-
-<form action="/Search/Results">
+ 
+<form method="post">
     <h2>Search by:</h2>
 
     <p>
@@ -27,29 +27,37 @@
 
 <hr />
 
-@if (ViewBag.jobs != null)
-{
 
-    <h3>@ViewBag.jobs.Count Result(s)</h3>
 
-    // TODO #2 - Loop over jobs dictionary and display all job fields
-    <form action="/Search/Results" method="post">
-        <p>
-            <ul>
-                @foreach (var @job in @ViewBag.jobs)
+    @if (ViewBag.jobs != null)
+    
+    {
+            
+            <h3>@ViewBag.jobs.Count Result(s)</h3>
+
+            // TODO #2 - Loop over jobs dictionary and display all job fields
+
+            <p>
+                @foreach (var job in ViewBag.jobs)
                 {
-
-                    <li>@job</li>
-
+                    <table width="500px";>
+                        @foreach (KeyValuePair<string, string> j in job)
+                    {
+                            <tr>
+                                <td style="font-weight:bold;text-align:left;">@j.Key</td>
+                                <td>@j.Value</td>
+                            </tr>
+                        }
+                    </table>
+                    <br />
+                    <br />
                 }
-            </ul>
-        </p>
+
+            </p>
+        
 
 
 
-
-    </form>
-
+    }
 
 
-        }

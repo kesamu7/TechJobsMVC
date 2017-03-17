@@ -17,13 +17,33 @@ namespace TechJobs.Controllers
         // search request and display results
 
         //Searchtype and searchTerm I believe should be the 2 required params.
+
+
+
+        
+        [Route("/Search")]
+        [HttpPost]
         public IActionResult Results(string searchType, string searchTerm)
         {
-            List<Dictionary<string, string>> jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
-            ViewBag.title = "Jobs with " + ListController.columnChoices + ": " + searchTerm;
-            ViewBag.jobs = jobs;
+            if (searchType == "all")
+            {
+                List<Dictionary<string, string>> theJobs = JobData.FindByValue(searchTerm);
+                ViewBag.title = "Search By";
+                ViewBag.jobs = theJobs;
+                ViewBag.columns = ListController.columnChoices;
+                return View("Index");
 
-            return View();
+            }
+
+            else
+            {
+                List<Dictionary<string, string>> jobs = JobData.FindByColumnAndValue(searchType, searchTerm);
+                //ViewBag.title = "Jobs with " + ": " + searchTerm;
+                ViewBag.jobs = jobs;
+                ViewBag.columns = ListController.columnChoices;
+
+                return View("Index");
+            }
         }
     }
 }
